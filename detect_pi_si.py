@@ -57,27 +57,27 @@ def redact_df(df,df_redacts):
         df_redacted.loc[redact['row']-1,redact['field']] = redact_text(df[redact['field']][redact['row']-1],redact.to_dict())
     return df_redacted
 
-# if __name__ == "__main__":
-#     #data
-#     df = pd.read_csv("data/pii_test_faker.csv",delimiter=",")
-#     df.dropna()
-#     #instantiate wrapper class
-#     comp_detect = ComprehendDetect(boto3.client("comprehend","us-east-1"))
+if __name__ == "__main__":
+    #data
+    df = pd.read_csv("data/pii_test_faker.csv",delimiter=",")
+    df.dropna()
+    #instantiate wrapper class
+    comp_detect = ComprehendDetect(boto3.client("comprehend","us-east-1"))
 
-#     #return PII detections
-#     df_pi = detect_pi(df)
-#     #redact PII detections
-#     df_redacted = redact_df(df,df_pi)
+    #return PII detections
+    df_pi = detect_pi(df)
+    #redact PII detections
+    df_redacted = redact_df(df,df_pi)
 
-#     #rescan for excluded names
-#     df_names = detect_names(df_redacted)
-#     #redact names
-#     df_redacted = redact_df(df_redacted,df_names)
+    #rescan for excluded names
+    df_names = detect_names(df_redacted)
+    #redact names
+    df_redacted = redact_df(df_redacted,df_names)
 
-#     df_redacted.to_csv("./data/fakerRedacted.csv",index=False)
-#     # df_compare = pd.DataFrame()
-#     # for j in range(len(df)):
-#     #     df_compare = pd.concat([df_compare,df[j:j+1]])
-#     #     df_compare = pd.concat([df_compare,df_redacted[j:j+1]])
-#     # df_compare.to_csv("data/compare.csv")
-#     # pprint(df_compare)
+    df_redacted.to_csv("./data/fakerRedacted.csv",index=False)
+    # df_compare = pd.DataFrame()
+    # for j in range(len(df)):
+    #     df_compare = pd.concat([df_compare,df[j:j+1]])
+    #     df_compare = pd.concat([df_compare,df_redacted[j:j+1]])
+    # df_compare.to_csv("data/compare.csv")
+    # pprint(df_compare)
