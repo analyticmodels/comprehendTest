@@ -4,6 +4,7 @@ from comprehend_detect import ComprehendDetect
 import boto3
 from botocore.exceptions import ClientError
 
+'''Detect PI in every column of every row. Write results to df'''
 def detect_pi(df,comp_detect):
     df_pi = pd.DataFrame()
     n_rows = 0
@@ -18,6 +19,7 @@ def detect_pi(df,comp_detect):
                     df_pi = pd.concat([df_pi,pd.DataFrame(pii_list)]) 
     return df_pi
 
+'''Detect names (not previously detected) in every column of every row. Write results to df'''
 def detect_names(df,comp_detect):
     df_names = pd.DataFrame()
     n_rows = 0
@@ -33,7 +35,7 @@ def detect_names(df,comp_detect):
                     df_names = pd.concat([df_names,pd.DataFrame([name])])
 
     return df_names
-
+'''Redact '''
 def redact_text(text, pi_dict):
     for pi in pi_dict:
         start = pi_dict['BeginOffset']
