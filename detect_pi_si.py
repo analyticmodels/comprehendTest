@@ -59,7 +59,7 @@ def redact_df(df,df_redacts):
 
 if __name__ == "__main__":
     #data
-    df = pd.read_csv("s3://pearsoncomprehend/comprehendData/pii_test_faker.csv",delimiter=",")
+    df = pd.read_csv("s3://pearsoncomprehend/comprehendData/pii_test_faker.csv",delimiter=",",nrows=10)
     df.dropna()
     comprehend_client = boto3.client("comprehend")
     #instantiate wrapper class
@@ -75,7 +75,7 @@ if __name__ == "__main__":
     #redact names
     df_redacted = redact_df(df_redacted,df_names)
 
-    df_redacted.to_csv("s3://pearsoncomprehend/comprehendData/data/fakerRedacted.csv",index=False)
+    df_redacted.to_csv("s3://pearsoncomprehend/comprehendData/data/fakerRedacted.csv",index=False,nrows=10)
     # df_compare = pd.DataFrame()
     # for j in range(len(df)):
     #     df_compare = pd.concat([df_compare,df[j:j+1]])
