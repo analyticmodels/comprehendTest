@@ -11,7 +11,7 @@ def detect_pi(df,comp_detect):
         n_rows += 1
         for col in df.columns:
                 if len(getattr(row,col)) > 0:
-                    pii_list = comp_detect.detect_pii(getattr(row, col), 'en')
+                    pii_list = comp_detect.detect_pii(str(getattr(row, col)), 'en')
                     for j in range(len(pii_list)):
                         pii_list[j]['field'] = col
                         pii_list[j]['row'] = n_rows
