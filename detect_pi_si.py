@@ -10,13 +10,12 @@ def detect_pi(df,comp_detect):
     for row in df.itertuples(index=False, name="row_tuple"):
         n_rows += 1
         for col in df.columns:
-            print(getattr(row,col))
-            pii_list = comp_detect.detect_pii(getattr(row, col), 'en')
-            for j in range(len(pii_list)):
-                pii_list[j]['field'] = col
-                pii_list[j]['row'] = n_rows
-            df_pi = pd.concat([df_pi,pd.DataFrame(pii_list)]) 
-
+                if len(getattr(row,col)) > 0:
+                    pii_list = comp_detect.detect_pii(getattr(row, col), 'en')
+                    for j in range(len(pii_list)):
+                        pii_list[j]['field'] = col
+                        pii_list[j]['row'] = n_rows
+                    df_pi = pd.concat([df_pi,pd.DataFrame(pii_list)]) 
     return df_pi
 
 def detect_names(df,comp_detect):
