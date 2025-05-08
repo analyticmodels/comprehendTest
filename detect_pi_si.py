@@ -10,6 +10,7 @@ def detect_pi(df,comp_detect):
     for row in df.itertuples(index=False, name="row_tuple"):
         n_rows += 1
         for col in df.columns:
+            print(getattr(row,col))
             pii_list = comp_detect.detect_pii(getattr(row, col), 'en')
             for j in range(len(pii_list)):
                 pii_list[j]['field'] = col
