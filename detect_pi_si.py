@@ -67,7 +67,7 @@ if __name__ == "__main__":
 
     #return PII detections
     df_pi = detect_pi(df)
-    df_pi.to_csv("detectedPI.csv",index=False)
+    df_pi.to_csv("s3://pearsoncomprehend/comprehendData/detectedPI.csv",index=False)
     #redact PII detections
     df_redacted = redact_df(df,df_pi)
 
