@@ -15,7 +15,7 @@ def detect_pi(df):
                 pii_list[j]['field'] = col
                 pii_list[j]['row'] = n_rows
             df_pi = pd.concat([df_pi,pd.DataFrame(pii_list)]) 
-    df_pi.to_csv("data/detectedPI.csv",index=False)
+
     return df_pi
 
 def detect_names(df):
@@ -67,6 +67,7 @@ if __name__ == "__main__":
 
     #return PII detections
     df_pi = detect_pi(df)
+    df_pi.to_csv("detectedPI.csv",index=False)
     #redact PII detections
     df_redacted = redact_df(df,df_pi)
 
