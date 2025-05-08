@@ -32,9 +32,6 @@ jupyter_core
 kiwisolver==1.4.8
 matplotlib==3.10.1
 matplotlib-inline
-mkl-service==2.4.0
-mkl_fft
-mkl_random
 multidict==6.4.3
 nest_asyncio
 numexpr
