@@ -35,7 +35,7 @@ def detect_names(df,comp_detect):
                     df_names = pd.concat([df_names,pd.DataFrame([name])])
 
     return df_names
-'''Redact '''
+'''Redact text in a single value'''
 def redact_text(text, pi_dict):
     for pi in pi_dict:
         start = pi_dict['BeginOffset']
@@ -52,7 +52,8 @@ def redact_text(text, pi_dict):
             pass
         #
         return redacted_str
-    
+
+'''Redact text in every row/col of df'''
 def redact_df(df,df_redacts):
     df_redacted = df.copy()
     for _, redact in df_redacts.iterrows():
