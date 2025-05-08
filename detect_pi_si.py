@@ -61,7 +61,7 @@ if __name__ == "__main__":
     #data
     df = pd.read_csv("s3://pearsoncomprehend/comprehendData/pii_test_faker.csv",delimiter=",")
     df.dropna()
-    comprehend_client = boto3.client("comprehend","us-east-1")
+    comprehend_client = boto3.client("comprehend")
     #instantiate wrapper class
     comp_detect = ComprehendDetect(comprehend_client)
 
