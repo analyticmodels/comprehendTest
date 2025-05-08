@@ -4,7 +4,7 @@ from comprehend_detect import ComprehendDetect
 import boto3
 from botocore.exceptions import ClientError
 
-def detect_pi(df):
+def detect_pi(df,comp_detect):
     df_pi = pd.DataFrame()
     n_rows = 0
     for row in df.itertuples(index=False, name="row_tuple"):
@@ -18,7 +18,7 @@ def detect_pi(df):
 
     return df_pi
 
-def detect_names(df):
+def detect_names(df,comp_detect):
     df_names = pd.DataFrame()
     n_rows = 0
     for row in df.itertuples(index=False):
