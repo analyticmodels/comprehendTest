@@ -31,7 +31,7 @@ def detect_names(df):
                     name['field'] = col
                     name['row'] = n_rows
                     df_names = pd.concat([df_names,pd.DataFrame([name])])
-    df_names.to_csv("data/detectedNames.csv",index=False)
+
     return df_names
 
 def redact_text(text, pi_dict):
@@ -73,10 +73,11 @@ if __name__ == "__main__":
 
     #rescan for excluded names
     df_names = detect_names(df_redacted)
+    df_names.to_csv("s3://pearsoncomprehend/comprehendData/detectedNames.csv",index=False)
     #redact names
     df_redacted = redact_df(df_redacted,df_names)
 
-    df_redacted.to_csv("s3://pearsoncomprehend/comprehendData/fakerRedacted.csv",index=False,nrows=10)
+    df_redacted.to_csv("s3://pearsoncomprehend/comprehendData/fakerRedacted.csv",index=False)
     # df_compare = pd.DataFrame()
     # for j in range(len(df)):
     #     df_compare = pd.concat([df_compare,df[j:j+1]])
